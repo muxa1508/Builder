@@ -14,6 +14,11 @@ public class Person {
         this.city = city;
     }
 
+    public Person(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
     public String getName() {
         return name;
     }
@@ -32,12 +37,12 @@ public class Person {
 
     public void happyBirthday() {
         if (hasAge()) {
-            this.age = age + 1;
+            this.age++;
         }
     }
 
     public boolean hasAge() {
-        if (age != 0) {
+        if (age > 0) {
             return true;
         }
         return false;
@@ -56,7 +61,9 @@ public class Person {
         return false;
     }
 
-
+    public PersonBuilder newChildBuilder() {
+        return new PersonBuilder().setSurname(getSurname()).setAge(getAge()).setAddress(getCity());
+    }
 
     @Override
     public String toString() {
@@ -67,4 +74,4 @@ public class Person {
                 ", city='" + city + '\'' +
                 '}';
     }
-    }
+}

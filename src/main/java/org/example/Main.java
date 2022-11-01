@@ -1,18 +1,30 @@
 package org.example;
 
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
+
+import java.io.*;
+import java.util.List;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Person mom = new PersonBuilder()
                 .setName("Анна")
                 .setSurname("Вольф")
-                .setAge(-100)
+                .setAge(30)
                 .setAddress("Сидней")
                 .build();
 
-//        Person son = mom.newChildBuilder()
-//                .setName("Антошка")
-//                .build();
-        System.out.println(mom);
+        Person son = mom.newChildBuilder()
+                .setName("Антошка")
+                .build();
+        System.out.println("У " + mom + " есть сын, " + son);
+
+        mom.happyBirthday();
+        son.happyBirthday();
+
+        System.out.println("У " + mom + " есть сын, " + son);
+
         try {
             new PersonBuilder().build();
         } catch (IllegalStateException e) {
